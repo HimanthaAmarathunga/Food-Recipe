@@ -1,50 +1,49 @@
-
 import 'package:flutter/material.dart';
-import 'package:food_recipe/model/recipe.dart';
+import 'package:food_recipe/model/kitchen_tips.dart';
 import 'package:food_recipe/pages/recipe_details.dart';
 import 'package:food_recipe/theme/colors.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class RecipeList extends StatefulWidget {
-  const RecipeList({ Key? key }) : super(key: key);
+class TipsList extends StatefulWidget {
+  const TipsList({Key? key}) : super(key: key);
 
   @override
-  State<RecipeList> createState() => _RecipeListState();
+  State<TipsList> createState() => _TipsListState();
 }
 
-class _RecipeListState extends State<RecipeList> {
-  List<FoodRecipe> recipes = [];
+class _TipsListState extends State<TipsList> {
+  List<KitchenTips> kitchenTips = [];
   bool isLoading = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    this.fetchRecipes();
+    fetchTips();
   }
 
-  fetchRecipes() async {
+  fetchTips() async {
     setState(() {
       isLoading = true;
     });
     var url =
-        "https://recipe-app-ctse.herokuapp.com/beverageRecipes/getBeverages";
+        "https://recipe-app-ctse.herokuapp.com/kitchentips/getAll";
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var items = json.decode(response.body);
       for (var item in items) {
-        var id = item['id'];
-        var beverageName = item['beverageName'];
+        var tipNo = item['tipNo'];
+        var name = item['name'];
+        var description = item['description'];
 
-        FoodRecipe recipe = FoodRecipe(id, beverageName);
-        recipes.add(recipe);
-      }
+        KitchenTips kitchenTip = KitchenTips(tipNo, name, description);
+        kitchenTips.add(kitchenTip);
         isLoading = false;
-        
+      }
     } else {
       setState(() {
-        recipes = [];
+        kitchenTips = [];
         isLoading = false;
       });
     }
@@ -61,17 +60,17 @@ class _RecipeListState extends State<RecipeList> {
   }
 
   Widget getBody() {
-    if (recipes.contains(null) || recipes.length < 0 || isLoading) {
+    if (kitchenTips.contains(null) || kitchenTips.length < 0 || isLoading) {
       return Center(
         child: CircularProgressIndicator(
-          valueColor: new AlwaysStoppedAnimation<Color>(primary),
+          valueColor: const AlwaysStoppedAnimation<Color>(primary),
         ),
       );
     }
     return ListView.builder(
-        itemCount: recipes.length,
+        itemCount: kitchenTips.length,
         itemBuilder: (context, index) {
-          return getCard(recipes[index]);
+          return getCard(kitchenTips[index]);
         });
   }
 
@@ -90,7 +89,7 @@ class _RecipeListState extends State<RecipeList> {
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
                       image: NetworkImage(
-                          "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574"),
+                          "https://pixel4agency.com/img/idea-vector-icon-png_277457.jpg"),
                       fit: BoxFit.cover)),
             ),
             SizedBox(
@@ -100,14 +99,14 @@ class _RecipeListState extends State<RecipeList> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  item.id.toString(),
+                  item.name.toString(),
                   style: TextStyle(fontSize: 17),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
-                  item.beverageName.toString() + " min cook",
+                  item.tipNo.toString() + " min cook",
                   style: TextStyle(
                     fontSize: 16,
                   ),
@@ -117,15 +116,13 @@ class _RecipeListState extends State<RecipeList> {
             SizedBox(
               width: 20,
             ),
-
           ],
         ),
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  RecipeDetails(recipe: item),
+              builder: (context) => RecipeDetails(recipe: item),
             ),
           );
         },

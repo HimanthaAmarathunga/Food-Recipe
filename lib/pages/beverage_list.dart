@@ -1,30 +1,28 @@
-
 import 'package:flutter/material.dart';
-import 'package:food_recipe/model/recipe.dart';
-import 'package:food_recipe/pages/recipe_details.dart';
+import 'package:food_recipe/model/beverage.dart';
 import 'package:food_recipe/theme/colors.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class RecipeList extends StatefulWidget {
-  const RecipeList({ Key? key }) : super(key: key);
+class BevarageList extends StatefulWidget {
+  const BevarageList({Key? key}) : super(key: key);
 
   @override
-  State<RecipeList> createState() => _RecipeListState();
+  State<BevarageList> createState() => _BevarageListState();
 }
 
-class _RecipeListState extends State<RecipeList> {
-  List<FoodRecipe> recipes = [];
+class _BevarageListState extends State<BevarageList> {
+  List<Beverages> beverages = [];
   bool isLoading = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    this.fetchRecipes();
+    this.fetchBeverages();
   }
 
-  fetchRecipes() async {
+  fetchBeverages() async {
     setState(() {
       isLoading = true;
     });
@@ -35,16 +33,17 @@ class _RecipeListState extends State<RecipeList> {
       var items = json.decode(response.body);
       for (var item in items) {
         var id = item['id'];
-        var beverageName = item['beverageName'];
+        var name = item['name'];
+        var description = item['description'];
+        var indrediants = item['indrediants'];
 
-        FoodRecipe recipe = FoodRecipe(id, beverageName);
-        recipes.add(recipe);
-      }
+        Beverages beverage = Beverages(id, name, description, indrediants);
+        beverages.add(beverage);
         isLoading = false;
-        
+      }
     } else {
       setState(() {
-        recipes = [];
+        beverages = [];
         isLoading = false;
       });
     }
@@ -54,14 +53,14 @@ class _RecipeListState extends State<RecipeList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Listing Recepices"),
+        title: Text("Listing Beveragers"),
       ),
       body: getBody(),
     );
   }
 
   Widget getBody() {
-    if (recipes.contains(null) || recipes.length < 0 || isLoading) {
+    if (beverages.contains(null) || beverages.length < 0 || isLoading) {
       return Center(
         child: CircularProgressIndicator(
           valueColor: new AlwaysStoppedAnimation<Color>(primary),
@@ -69,9 +68,9 @@ class _RecipeListState extends State<RecipeList> {
       );
     }
     return ListView.builder(
-        itemCount: recipes.length,
+        itemCount: beverages.length,
         itemBuilder: (context, index) {
-          return getCard(recipes[index]);
+          return getCard(beverages[index]);
         });
   }
 
@@ -90,7 +89,7 @@ class _RecipeListState extends State<RecipeList> {
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
                       image: NetworkImage(
-                          "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574"),
+                          "https://1.bp.blogspot.com/-yGrvtdT3Mhk/X9pIX0zkT6I/AAAAAAAABTw/QkOpEkxGjtMSfMa9LgtZwmoXHWj7HY35QCLcBGAsYHQ/s2048/pexels-naim-benjelloun-2110923-min.jpg"),
                       fit: BoxFit.cover)),
             ),
             SizedBox(
@@ -100,14 +99,14 @@ class _RecipeListState extends State<RecipeList> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  item.id.toString(),
+                  item.name.toString(),
                   style: TextStyle(fontSize: 17),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
-                  item.beverageName.toString() + " min cook",
+                  item.id.toString(),
                   style: TextStyle(
                     fontSize: 16,
                   ),
@@ -117,18 +116,16 @@ class _RecipeListState extends State<RecipeList> {
             SizedBox(
               width: 20,
             ),
-
           ],
         ),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  RecipeDetails(recipe: item),
-            ),
-          );
-        },
+        // onTap: () {
+        //   Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) => RecipeDetails(recipe: item),
+        //     ),
+        //   );
+        // },
       ),
     ));
   }

@@ -1,50 +1,52 @@
-
 import 'package:flutter/material.dart';
-import 'package:food_recipe/model/recipe.dart';
-import 'package:food_recipe/pages/recipe_details.dart';
+import 'package:food_recipe/model/diat.dart';
 import 'package:food_recipe/theme/colors.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class RecipeList extends StatefulWidget {
-  const RecipeList({ Key? key }) : super(key: key);
+class DiatList extends StatefulWidget {
+  const DiatList({Key? key}) : super(key: key);
 
   @override
-  State<RecipeList> createState() => _RecipeListState();
+  State<DiatList> createState() => _DiatListState();
 }
 
-class _RecipeListState extends State<RecipeList> {
-  List<FoodRecipe> recipes = [];
+class _DiatListState extends State<DiatList> {
+  List<Diat> diats = [];
   bool isLoading = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    this.fetchRecipes();
+    this.fetchDiats();
   }
 
-  fetchRecipes() async {
+  fetchDiats() async {
     setState(() {
       isLoading = true;
     });
-    var url =
-        "https://recipe-app-ctse.herokuapp.com/beverageRecipes/getBeverages";
+    var url = "https://recipe-app-ctse.herokuapp.com/diet/getAll";
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var items = json.decode(response.body);
-      for (var item in items) {
-        var id = item['id'];
-        var beverageName = item['beverageName'];
 
-        FoodRecipe recipe = FoodRecipe(id, beverageName);
-        recipes.add(recipe);
-      }
+      for (var item in items) {
+        var dietId = item['dietId'];
+        var name = item['name'];
+        var age = item['age'];
+        var weight = item['weight'];
+        var breakfast = item['breakfast'];
+        var lunch = item['lunch'];
+        var dinner = item['dinner'];
+
+        Diat diat = Diat(dietId, age, weight, breakfast, lunch, dinner, name);
+        diats.add(diat);
         isLoading = false;
-        
+      }
     } else {
       setState(() {
-        recipes = [];
+        diats = [];
         isLoading = false;
       });
     }
@@ -54,14 +56,14 @@ class _RecipeListState extends State<RecipeList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Listing Recepices"),
+        title: Text("Listing Diat Plans"),
       ),
       body: getBody(),
     );
   }
 
   Widget getBody() {
-    if (recipes.contains(null) || recipes.length < 0 || isLoading) {
+    if (diats.contains(null) || diats.length < 0 || isLoading) {
       return Center(
         child: CircularProgressIndicator(
           valueColor: new AlwaysStoppedAnimation<Color>(primary),
@@ -69,9 +71,9 @@ class _RecipeListState extends State<RecipeList> {
       );
     }
     return ListView.builder(
-        itemCount: recipes.length,
+        itemCount: diats.length,
         itemBuilder: (context, index) {
-          return getCard(recipes[index]);
+          return getCard(diats[index]);
         });
   }
 
@@ -90,7 +92,7 @@ class _RecipeListState extends State<RecipeList> {
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
                       image: NetworkImage(
-                          "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574"),
+                          "https://images.medicinenet.com/images/article/main_image/what-is-the-best-meal-plan-for-losing-weight.jpg"),
                       fit: BoxFit.cover)),
             ),
             SizedBox(
@@ -100,14 +102,14 @@ class _RecipeListState extends State<RecipeList> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  item.id.toString(),
+                  item.name.toString(),
                   style: TextStyle(fontSize: 17),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
-                  item.beverageName.toString() + " min cook",
+                  "Age Group - " + item.age.toString(),
                   style: TextStyle(
                     fontSize: 16,
                   ),
@@ -117,18 +119,17 @@ class _RecipeListState extends State<RecipeList> {
             SizedBox(
               width: 20,
             ),
-
           ],
         ),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  RecipeDetails(recipe: item),
-            ),
-          );
-        },
+        // onTap: () {
+        //   Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) =>
+        //           RecipeDetails(recipe: item),
+        //     ),
+        //   );
+        // },
       ),
     ));
   }
