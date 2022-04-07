@@ -12,7 +12,7 @@ class RecipeDetails extends StatelessWidget {
         title: Text(recipe.id.toString()),
       ),
       body: Container(
-        child: Text(recipe.beverageName),
+        child: Text(recipe.name),
       ),
     );
   }

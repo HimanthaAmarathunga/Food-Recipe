@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe/model/beverage.dart';
+import 'package:food_recipe/pages/recipe_details.dart';
 import 'package:food_recipe/theme/colors.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -35,9 +36,9 @@ class _BevarageListState extends State<BevarageList> {
         var id = item['id'];
         var name = item['name'];
         var description = item['description'];
-        var indrediants = item['indrediants'];
+        var ingredients = item['ingredients'];
 
-        Beverages beverage = Beverages(id, name, description, indrediants);
+        Beverages beverage = Beverages(id, name, description, ingredients);
         beverages.add(beverage);
         isLoading = false;
       }
@@ -118,14 +119,14 @@ class _BevarageListState extends State<BevarageList> {
             ),
           ],
         ),
-        // onTap: () {
-        //   Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //       builder: (context) => RecipeDetails(recipe: item),
-        //     ),
-        //   );
-        // },
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => RecipeDetails(recipe: item),
+            ),
+          );
+        },
       ),
     ));
   }

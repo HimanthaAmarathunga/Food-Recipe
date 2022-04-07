@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe/model/diat.dart';
+import 'package:food_recipe/pages/recipe_details.dart';
 import 'package:food_recipe/theme/colors.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -12,17 +13,17 @@ class DiatList extends StatefulWidget {
 }
 
 class _DiatListState extends State<DiatList> {
-  List<Diat> diats = [];
+  List<Diet> diets = [];
   bool isLoading = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    this.fetchDiats();
+    this.fetchDiets();
   }
 
-  fetchDiats() async {
+  fetchDiets() async {
     setState(() {
       isLoading = true;
     });
@@ -40,13 +41,13 @@ class _DiatListState extends State<DiatList> {
         var lunch = item['lunch'];
         var dinner = item['dinner'];
 
-        Diat diat = Diat(dietId, age, weight, breakfast, lunch, dinner, name);
-        diats.add(diat);
+        Diet diet = Diet(dietId, name, age, weight, breakfast, lunch, dinner);
+        diets.add(diet);
         isLoading = false;
       }
     } else {
       setState(() {
-        diats = [];
+        diets = [];
         isLoading = false;
       });
     }
@@ -63,7 +64,7 @@ class _DiatListState extends State<DiatList> {
   }
 
   Widget getBody() {
-    if (diats.contains(null) || diats.length < 0 || isLoading) {
+    if (diets.contains(null) || diets.length < 0 || isLoading) {
       return Center(
         child: CircularProgressIndicator(
           valueColor: new AlwaysStoppedAnimation<Color>(primary),
@@ -71,9 +72,9 @@ class _DiatListState extends State<DiatList> {
       );
     }
     return ListView.builder(
-        itemCount: diats.length,
+        itemCount: diets.length,
         itemBuilder: (context, index) {
-          return getCard(diats[index]);
+          return getCard(diets[index]);
         });
   }
 
@@ -121,15 +122,15 @@ class _DiatListState extends State<DiatList> {
             ),
           ],
         ),
-        // onTap: () {
-        //   Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //       builder: (context) =>
-        //           RecipeDetails(recipe: item),
-        //     ),
-        //   );
-        // },
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  RecipeDetails(recipe: item),
+            ),
+          );
+        },
       ),
     ));
   }

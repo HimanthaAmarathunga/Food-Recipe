@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:food_recipe/model/recipe.dart';
 import 'package:food_recipe/pages/recipe_details.dart';
@@ -7,7 +6,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class RecipeList extends StatefulWidget {
-  const RecipeList({ Key? key }) : super(key: key);
+  const RecipeList({Key? key}) : super(key: key);
 
   @override
   State<RecipeList> createState() => _RecipeListState();
@@ -35,13 +34,17 @@ class _RecipeListState extends State<RecipeList> {
       var items = json.decode(response.body);
       for (var item in items) {
         var id = item['id'];
-        var beverageName = item['beverageName'];
+        var name = item['name'];
+        var cookingTime = item['cookingTime'];
+        var description = item['description'];
+        var ingredients = item['ingredients'];
+        var imageLink = item['imageLink'];
 
-        FoodRecipe recipe = FoodRecipe(id, beverageName);
+        FoodRecipe recipe = FoodRecipe(
+            id, name, cookingTime, description, ingredients, imageLink);
         recipes.add(recipe);
       }
-        isLoading = false;
-        
+      isLoading = false;
     } else {
       setState(() {
         recipes = [];
@@ -89,7 +92,7 @@ class _RecipeListState extends State<RecipeList> {
                   color: primary,
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                      image: NetworkImage(
+                      image: NetworkImage(item.imageLink ??
                           "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574"),
                       fit: BoxFit.cover)),
             ),
@@ -107,7 +110,7 @@ class _RecipeListState extends State<RecipeList> {
                   height: 10,
                 ),
                 Text(
-                  item.beverageName.toString() + " min cook",
+                  item.cookingTime.toString(),
                   style: TextStyle(
                     fontSize: 16,
                   ),
@@ -117,15 +120,13 @@ class _RecipeListState extends State<RecipeList> {
             SizedBox(
               width: 20,
             ),
-
           ],
         ),
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  RecipeDetails(recipe: item),
+              builder: (context) => RecipeDetails(recipe: item),
             ),
           );
         },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipe/pages/AddDiet/addDiet.dart';
 import 'package:food_recipe/pages/index.dart';
 import 'package:food_recipe/pages/recipe_list.dart';
 import 'package:food_recipe/theme/colors.dart';
@@ -10,7 +11,7 @@ void main() {
       theme: ThemeData(
         primaryColor: primary
       ),
-      home: IndexPage(),
+      home: addDiet(),
     )
   );
 }
