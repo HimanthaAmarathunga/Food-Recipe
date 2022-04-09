@@ -128,7 +128,6 @@ class UpdateBeverage extends StatelessWidget {
                       focusedBorder: InputBorder.none),
                   onChanged: (value) {
                     ingredients = value;
-                    print(ingredients);
                   },
                 ),
               ),
@@ -171,7 +170,7 @@ class UpdateBeverage extends StatelessWidget {
               ),
               RaisedButton(
                 onPressed: () {
-                  deleteClass();
+                  deleteClass(beverage.id.toString(), context);
                 },
                 color: Colors.red,
                 padding: EdgeInsets.symmetric(horizontal: 50),
@@ -224,13 +223,7 @@ class UpdateBeverage extends StatelessWidget {
     }
   }
 
-  void deleteClass() async {
-    var BeverageID = "";
-
-    final sharePref = await SharedPreferences.getInstance();
-    BeverageID = sharePref.getString('BeverageID').toString();
-    print("Record ID : $BeverageID");
-
+  void deleteClass(BeverageID, context) async {
     if (BeverageID != Null) {
       var response = await http.delete(
           Uri.parse(
@@ -247,8 +240,8 @@ class UpdateBeverage extends StatelessWidget {
             gravity: ToastGravity.BOTTOM,
             backgroundColor: Colors.red,
             textColor: Colors.white);
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => Homepage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => BevarageList()));
       }
 
       print("Deleted Data" + response.body.toString());
