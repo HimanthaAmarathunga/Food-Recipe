@@ -111,7 +111,7 @@ class _BevarageListState extends State<BevarageList> {
                   height: 10,
                 ),
                 Text(
-                  item.id.toString(),
+                  item.description.toString(),
                   style: TextStyle(
                     fontSize: 16,
                   ),

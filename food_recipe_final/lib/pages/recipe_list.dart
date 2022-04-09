@@ -81,13 +81,13 @@ class _RecipeListState extends State<RecipeList> {
   }
 
   Widget getCard(item) {
-    // var imurl;
-    // if (item.imageLink == null || item.imageLink == '') {
-    //   imurl =
-    //       "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574";
-    // } else {
-    //   imurl = item.imageLink;
-    // }
+    var imurl;
+    if (item.imageLink == null || item.imageLink == '') {
+      imurl =
+          "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574";
+    } else {
+      imurl = item.imageLink;
+    }
 
     return Card(
         child: Padding(
@@ -102,8 +102,7 @@ class _RecipeListState extends State<RecipeList> {
                   color: primary,
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                      image: NetworkImage(
-                          "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574"),
+                      image: NetworkImage(imurl),
                       fit: BoxFit.cover)),
             ),
             SizedBox(

@@ -21,7 +21,6 @@ class UpdateBeverage extends StatelessWidget {
         ingredients = beverage.ingredients.toString();
     bool isLoading = false;
     return Scaffold(
-      drawer: NavBar(),
       appBar: AppBar(
         title: Text("Update Beverage Details"),
       ),
@@ -132,7 +131,7 @@ class UpdateBeverage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 50,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
