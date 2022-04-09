@@ -92,7 +92,7 @@ class _BevarageListState extends State<BevarageList> {
               decoration: BoxDecoration(
                   color: primary,
                   borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       image: NetworkImage(
                           "https://1.bp.blogspot.com/-yGrvtdT3Mhk/X9pIX0zkT6I/AAAAAAAABTw/QkOpEkxGjtMSfMa9LgtZwmoXHWj7HY35QCLcBGAsYHQ/s2048/pexels-naim-benjelloun-2110923-min.jpg"),
                       fit: BoxFit.cover)),
