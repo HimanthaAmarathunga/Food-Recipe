@@ -244,19 +244,6 @@ class InitState extends State<addDiet> {
                   RaisedButton(
                     onPressed: () {
                       {
-                        print(dietId +
-                            " " +
-                            name +
-                            " " +
-                            age +
-                            " " +
-                            weight +
-                            " " +
-                            breakfast +
-                            " " +
-                            lunch +
-                            " " +
-                            dinner);
                         addClass(dietId, name, age, weight, breakfast, lunch,
                             dinner);
                       }
@@ -285,21 +272,6 @@ class InitState extends State<addDiet> {
 
   void addClass(String dietId, String name, String age, String weight,
       String breakfast, String lunch, String dinner) async {
-    print(dietId +
-        " " +
-        name +
-        " " +
-        age +
-        " " +
-        weight +
-        " " +
-        breakfast +
-        " " +
-        lunch +
-        " " +
-        dinner);
-    // var dietId = "";
-
     final prefs = await SharedPreferences.getInstance();
     dietId = prefs.getString('dietId').toString();
     try {
