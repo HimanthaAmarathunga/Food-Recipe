@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/model/diat.dart';
 import 'package:food_recipe_final/pages/recipe_details.dart';
+import 'package:food_recipe_final/pages/update_diet.dart';
 import 'package:food_recipe_final/theme/colors.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -124,15 +125,14 @@ class _DiatListState extends State<DiatList> {
             ),
           ],
         ),
-        // onTap: () {
-        //   Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //       builder: (context) =>
-        //           RecipeDetails(recipe: item),
-        //     ),
-        //   );
-        // },
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => UpdateDiet(diet: item),
+            ),
+          );
+        },
       ),
     ));
   }

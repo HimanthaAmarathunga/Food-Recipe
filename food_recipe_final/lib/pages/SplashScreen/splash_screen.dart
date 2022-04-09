@@ -71,11 +71,11 @@ class _SplashScreenState extends State<SplashScreen>
               children: [
                 SlideTransition(
                   position: _leftToRightAnim,
-                  child: const Text('Food Receipe'),
+                  child: const Text(''),
                 ),
                 SlideTransition(
                   position: _rightToLeftAnim,
-                  child: const Text('CTSE'),
+                  child: const Text(''),
                 ),
               ],
             )
