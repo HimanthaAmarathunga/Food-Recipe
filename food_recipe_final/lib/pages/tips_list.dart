@@ -108,7 +108,7 @@ class _TipsListState extends State<TipsList> {
                   height: 10,
                 ),
                 Text(
-                  item.tipNo.toString() + " min cook",
+                  item.description.toString(),
                   style: TextStyle(
                     fontSize: 16,
                   ),

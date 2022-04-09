@@ -182,17 +182,11 @@ class InitState extends State<addBeverage> {
 
   void addClass(String bervID, String name, String description,
       String ingredients) async {
-    var bervID = "";
-
-    final prefs = await SharedPreferences.getInstance();
-    bervID = prefs.getString('bervID').toString();
     try {
-      print("test123");
       var url = Uri.parse(
           "https://recipe-app-ctse.herokuapp.com/beverageRecipes/addBeverages");
       var response = await http.post(url,
           body: jsonEncode({
-            "bervID": bervID,
             "name": name,
             "description": description,
             "ingredients": ingredients
