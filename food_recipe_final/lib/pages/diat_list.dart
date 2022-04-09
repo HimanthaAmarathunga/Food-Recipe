@@ -43,7 +43,9 @@ class _DiatListState extends State<DiatList> {
 
         Diet diet = Diet(dietId, name, age, weight, breakfast, lunch, dinner);
         diets.add(diet);
-        isLoading = false;
+        setState(() {
+          isLoading = false;
+        });
       }
     } else {
       setState(() {

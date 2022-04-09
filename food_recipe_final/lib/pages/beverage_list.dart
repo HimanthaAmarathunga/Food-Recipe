@@ -41,7 +41,9 @@ class _BevarageListState extends State<BevarageList> {
 
         Beverages beverage = Beverages(id, name, description, ingredients);
         beverages.add(beverage);
-        isLoading = false;
+        setState(() {
+          isLoading = false;
+        });
       }
     } else {
       setState(() {
@@ -68,12 +70,13 @@ class _BevarageListState extends State<BevarageList> {
           valueColor: new AlwaysStoppedAnimation<Color>(primary),
         ),
       );
+    } else {
+      return ListView.builder(
+          itemCount: beverages.length,
+          itemBuilder: (context, index) {
+            return getCard(beverages[index]);
+          });
     }
-    return ListView.builder(
-        itemCount: beverages.length,
-        itemBuilder: (context, index) {
-          return getCard(beverages[index]);
-        });
   }
 
   Widget getCard(item) {

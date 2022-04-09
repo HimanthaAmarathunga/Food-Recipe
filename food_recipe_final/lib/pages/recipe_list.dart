@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/model/recipe.dart';
 import 'package:food_recipe_final/pages/recipe_details.dart';
+import 'package:food_recipe_final/pages/update_recipe.dart';
 import 'package:food_recipe_final/theme/colors.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -43,7 +44,9 @@ class _RecipeListState extends State<RecipeList> {
             id, name, cookingTime, description, ingredients, imageLink);
         recipes.add(recipe);
       }
-      isLoading = false;
+      setState(() {
+        isLoading = false;
+      });
     } else {
       setState(() {
         recipes = [];
@@ -99,7 +102,9 @@ class _RecipeListState extends State<RecipeList> {
                   color: primary,
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                      image: NetworkImage("https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574"), fit: BoxFit.cover)),
+                      image: NetworkImage(
+                          "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=768,574"),
+                      fit: BoxFit.cover)),
             ),
             SizedBox(
               width: 20,
@@ -131,7 +136,7 @@ class _RecipeListState extends State<RecipeList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => RecipeDetails(recipe: item),
+              builder: (context) => UpdateRecipe(recipe: item),
             ),
           );
         },

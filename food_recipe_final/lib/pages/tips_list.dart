@@ -39,7 +39,9 @@ class _TipsListState extends State<TipsList> {
 
         KitchenTips kitchenTip = KitchenTips(tipNo, name, description);
         kitchenTips.add(kitchenTip);
-        isLoading = false;
+       setState(() {
+          isLoading = false;
+        });
       }
     } else {
       setState(() {
