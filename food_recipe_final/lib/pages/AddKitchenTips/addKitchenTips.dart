@@ -150,15 +150,11 @@ class InitState extends State<addKitchenTips> {
   }
 
   void addClass(String tipNo, String name, String description) async {
-    var tipNo = "";
 
-    final prefs = await SharedPreferences.getInstance();
-    tipNo = prefs.getString('tipNo').toString();
     try {
       var response = await http.post(
           Uri.parse("https://recipe-app-ctse.herokuapp.com/kitchentips/add"),
           body:jsonEncode( {
-            "tipNo": tipNo,
             "name": name,
             "description": description
           }),
