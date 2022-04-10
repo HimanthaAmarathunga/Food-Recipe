@@ -32,7 +32,7 @@ class _DiatListState extends State<DiatList> {
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var items = json.decode(response.body);
-
+      // print(items);
       for (var item in items) {
         var dietId = item['dietId'];
         var name = item['name'];

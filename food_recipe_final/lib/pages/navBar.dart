@@ -3,6 +3,7 @@ import 'package:food_recipe_final/pages/AddBeverages/addBeverage.dart';
 import 'package:food_recipe_final/pages/AddRecipe/addFoodReceipe.dart';
 import 'package:food_recipe_final/pages/HomePage/home.dart';
 import 'package:food_recipe_final/pages/ViewBeverages/viewBeverages.dart';
+import 'package:food_recipe_final/pages/about_us.dart';
 import 'package:food_recipe_final/pages/contact_us.dart';
 import 'package:food_recipe_final/pages/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -145,6 +146,19 @@ class _HomeScreenState extends State<NavBar> {
             },
             leading: Icon(Icons.contact_phone_outlined),
             title: Text("Contact Us"),
+          ),
+          ListTile(
+            onTap: () {
+              clearSharedPreferences();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AboutUs(),
+                ),
+              );
+            },
+            leading: Icon(Icons.info_outline),
+            title: Text("About Us"),
           ),
         ],
       ),

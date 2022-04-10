@@ -41,7 +41,8 @@ class UpdateDiet extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 25, right: 20),
                 child: Text(
-                  "Diet Plan Name",
+                  // "Diet Plan Name"
+                  diet.dietId.toString(),
                   style: TextStyle(fontSize: 15),
                 ),
               ),
@@ -230,7 +231,7 @@ class UpdateDiet extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 50,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
