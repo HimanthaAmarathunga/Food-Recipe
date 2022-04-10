@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/model/kitchen_tips.dart';
-import 'package:food_recipe_final/pages/recipe_details.dart';
+import 'package:food_recipe_final/pages/update_Tips.dart';
 import 'package:food_recipe_final/theme/colors.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -27,8 +27,7 @@ class _TipsListState extends State<TipsList> {
     setState(() {
       isLoading = true;
     });
-    var url =
-        "https://recipe-app-ctse.herokuapp.com/kitchentips/getAll";
+    var url = "https://recipe-app-ctse.herokuapp.com/kitchentips/getAll";
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var items = json.decode(response.body);
@@ -39,7 +38,7 @@ class _TipsListState extends State<TipsList> {
 
         KitchenTips kitchenTip = KitchenTips(tipNo, name, description);
         kitchenTips.add(kitchenTip);
-       setState(() {
+        setState(() {
           isLoading = false;
         });
       }
@@ -120,14 +119,14 @@ class _TipsListState extends State<TipsList> {
             ),
           ],
         ),
-        // onTap: () {
-        //   Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //       builder: (context) => RecipeDetails(recipe: item),
-        //     ),
-        //   );
-        // },
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => UpdateTips(kitchenTips: item),
+            ),
+          );
+        },
       ),
     ));
   }
