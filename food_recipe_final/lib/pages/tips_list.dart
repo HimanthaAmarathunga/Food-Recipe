@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/model/kitchen_tips.dart';
-import 'package:food_recipe_final/pages/recipe_details.dart';
+import 'package:food_recipe_final/pages/update_Tips.dart';
 import 'package:food_recipe_final/theme/colors.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -123,7 +123,7 @@ class _TipsListState extends State<TipsList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => RecipeDetails(recipe: item),
+              builder: (context) => UpdateTips(kitchenTips: item),
             ),
           );
         },
