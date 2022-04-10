@@ -116,7 +116,7 @@ class UpdateTips extends StatelessWidget {
                   ),
                   RaisedButton(
                     onPressed: () {
-                      update_class(kitchenTips.tipNo.toString(), name,
+                      update_class(kitchenTips.id.toString(), name,
                           description, context);
                     },
                     color: Colors.orange,
@@ -136,7 +136,7 @@ class UpdateTips extends StatelessWidget {
               ),
               RaisedButton(
                 onPressed: () {
-                  deleteClass(kitchenTips.tipNo.toString(), context);
+                  deleteClass(kitchenTips.id.toString(), context);
                 },
                 color: Colors.red,
                 padding: EdgeInsets.symmetric(horizontal: 50),

@@ -1,5 +1,5 @@
 class Diet {
-  final String dietId;
+  final String id;
   final String name;
   final String age;
   final String weight;
@@ -7,14 +7,14 @@ class Diet {
   final String lunch;
   final String dinner;
 
-  Diet(this.dietId, this.name, this.age, this.weight, this.breakfast,
+  Diet(this.id, this.name, this.age, this.weight, this.breakfast,
       this.lunch, this.dinner);
 
-  Diet.fromJson(Map<String, dynamic> json, this.dietId, this.name, this.age,
+  Diet.fromJson(Map<String, dynamic> json, this.id, this.name, this.age,
       this.weight, this.breakfast, this.lunch, this.dinner);
 
   Map<String, dynamic> toJson() => {
-        "dietId": dietId,
+        "dietId": id,
         "name": name,
         "age": age,
         "weight": weight,

@@ -41,8 +41,8 @@ class UpdateDiet extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 25, right: 20),
                 child: Text(
-                  // "Diet Plan Name"
-                  diet.dietId.toString(),
+                  "Diet Plan Name",
+                  // diet.dietId.toString(),
                   style: TextStyle(fontSize: 15),
                 ),
               ),
@@ -249,7 +249,7 @@ class UpdateDiet extends StatelessWidget {
                   ),
                   RaisedButton(
                     onPressed: () {
-                      update_class(diet.dietId.toString(), name, age, weight,
+                      update_class(diet.id.toString(), name, age, weight,
                           breakfast, lunch, dinner, context);
                     },
                     color: Colors.orange,
@@ -269,7 +269,7 @@ class UpdateDiet extends StatelessWidget {
               ),
               RaisedButton(
                 onPressed: () {
-                  deleteClass(diet.dietId.toString(), context);
+                  deleteClass(diet.id.toString(), context);
                 },
                 color: Colors.red,
                 padding: EdgeInsets.symmetric(horizontal: 50),
@@ -293,6 +293,15 @@ class UpdateDiet extends StatelessWidget {
   void update_class(
       dietID, name, age, weight, breakfast, lunch, dinner, context) async {
     if (dietID != Null) {
+      print(jsonEncode({
+        "Test before id": dietID,
+        "name": name,
+        "age": age,
+        "weight": weight,
+        "breakfast": breakfast,
+        "lunch": lunch,
+        "dinner": dinner,
+      }));
       var response = await http.put(
           'https://recipe-app-ctse.herokuapp.com/diet/update',
           body: jsonEncode({

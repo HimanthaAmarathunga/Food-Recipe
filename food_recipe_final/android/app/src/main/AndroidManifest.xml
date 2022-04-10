@@ -2,7 +2,7 @@
     package="com.example.food_recipe_final_final_final">
    <application
         android:label="food_recipe_final_final_final"
-        android:name="${applicationName}"
+        android:name="Digital Chef"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

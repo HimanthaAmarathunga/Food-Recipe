@@ -1,15 +1,15 @@
 class KitchenTips {
-  final String tipNo;
+  final String id;
   final String name;
   final String description;
 
-  KitchenTips(this.tipNo, this.name, this.description);
+  KitchenTips(this.id, this.name, this.description);
 
   KitchenTips.fromJson(
-      Map<String, dynamic> json, this.tipNo,this.name, this.description);
+      Map<String, dynamic> json, this.id,this.name, this.description);
 
   Map<String, dynamic> toJson() => {
-    "tipNo": tipNo,
+    "tipNo": id,
     "name": name,
     "description": description,
   };

@@ -106,12 +106,18 @@ class _TipsListState extends State<TipsList> {
                 SizedBox(
                   height: 10,
                 ),
-                Text(
-                  item.description.toString(),
-                  style: TextStyle(
-                    fontSize: 16,
+                Container(
+                  width: 200,
+                  child: Flexible(
+                    child: RichText(
+                      overflow: TextOverflow.ellipsis,
+                      strutStyle: StrutStyle(fontSize: 12.0),
+                      text: TextSpan(
+                          style: TextStyle(color: Colors.black),
+                          text: item.description.toString()),
+                    ),
                   ),
-                ),
+                )
               ],
             ),
             SizedBox(

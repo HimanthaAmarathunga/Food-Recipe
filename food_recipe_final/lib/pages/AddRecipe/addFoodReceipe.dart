@@ -31,6 +31,7 @@ class InitState extends State<addFoodReceipe> {
     return Scaffold(
       drawer: NavBar(),
       appBar: AppBar(
+        // title: Text('Add Food Recipe'),
         elevation: 1,
       ),
       body: Container(
@@ -46,9 +47,6 @@ class InitState extends State<addFoodReceipe> {
                   "Add Food Receipe",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                 ),
-              ),
-              SizedBox(
-                height: 15,
               ),
               SizedBox(
                 height: 55,
@@ -198,7 +196,7 @@ class InitState extends State<addFoodReceipe> {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 50,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
