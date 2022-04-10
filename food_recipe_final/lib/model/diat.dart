@@ -14,7 +14,7 @@ class Diet {
       this.weight, this.breakfast, this.lunch, this.dinner);
 
   Map<String, dynamic> toJson() => {
-        "dietId": id,
+        "id": id,
         "name": name,
         "age": age,
         "weight": weight,

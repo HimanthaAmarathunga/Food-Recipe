@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/model/kitchen_tips.dart';
+import 'package:food_recipe_final/pages/navBar.dart';
 import 'package:food_recipe_final/pages/update_Tips.dart';
 import 'package:food_recipe_final/theme/colors.dart';
 import 'dart:convert';
@@ -32,7 +33,7 @@ class _TipsListState extends State<TipsList> {
     if (response.statusCode == 200) {
       var items = json.decode(response.body);
       for (var item in items) {
-        var tipNo = item['tipNo'];
+        var tipNo = item['id'];
         var name = item['name'];
         var description = item['description'];
 
@@ -53,6 +54,7 @@ class _TipsListState extends State<TipsList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
         title: Text("Listing Tips"),
       ),

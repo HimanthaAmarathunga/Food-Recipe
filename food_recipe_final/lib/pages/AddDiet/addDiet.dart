@@ -50,10 +50,7 @@ class InitState extends State<addDiet> {
                 ),
               ),
               SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                height: 55,
+                height: 50,
               ),
               Container(
                 margin: EdgeInsets.only(left: 20, right: 20, top: 20),
@@ -225,7 +222,7 @@ class InitState extends State<addDiet> {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 50,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -272,8 +269,6 @@ class InitState extends State<addDiet> {
 
   void addClass(String dietId, String name, String age, String weight,
       String breakfast, String lunch, String dinner) async {
-    final prefs = await SharedPreferences.getInstance();
-    dietId = prefs.getString('dietId').toString();
     try {
       var response = await http.post(
           Uri.parse("https://recipe-app-ctse.herokuapp.com/diet/add"),

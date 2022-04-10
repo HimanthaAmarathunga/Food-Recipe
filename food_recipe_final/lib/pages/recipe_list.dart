@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/model/recipe.dart';
+import 'package:food_recipe_final/pages/navBar.dart';
 import 'package:food_recipe_final/pages/recipe_details.dart';
 import 'package:food_recipe_final/pages/update_recipe.dart';
 import 'package:food_recipe_final/theme/colors.dart';
@@ -58,6 +59,7 @@ class _RecipeListState extends State<RecipeList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
         title: Text("Listing Recepices"),
       ),
@@ -102,8 +104,7 @@ class _RecipeListState extends State<RecipeList> {
                   color: primary,
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                      image: NetworkImage(imurl),
-                      fit: BoxFit.cover)),
+                      image: NetworkImage(imurl), fit: BoxFit.cover)),
             ),
             SizedBox(
               width: 20,

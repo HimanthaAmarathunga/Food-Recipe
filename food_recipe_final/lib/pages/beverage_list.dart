@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/model/beverage.dart';
+import 'package:food_recipe_final/pages/navBar.dart';
 import 'package:food_recipe_final/pages/recipe_details.dart';
 import 'package:food_recipe_final/pages/update_beverages.dart';
 import 'package:food_recipe_final/theme/colors.dart';
@@ -56,6 +57,7 @@ class _BevarageListState extends State<BevarageList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
         title: Text("Listing Beveragers"),
       ),

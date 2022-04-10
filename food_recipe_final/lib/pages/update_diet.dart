@@ -41,8 +41,8 @@ class UpdateDiet extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 25, right: 20),
                 child: Text(
-                  "Diet Plan Name",
-                  // diet.dietId.toString(),
+                  // "Diet Plan Name",
+                  diet.id.toString(),
                   style: TextStyle(fontSize: 15),
                 ),
               ),

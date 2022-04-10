@@ -136,7 +136,7 @@ class InitState extends State<addBeverage> {
                 ),
               ),
               SizedBox(
-                height: 200,
+                height: 50,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

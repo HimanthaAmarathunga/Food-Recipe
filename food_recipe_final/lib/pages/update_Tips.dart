@@ -116,8 +116,8 @@ class UpdateTips extends StatelessWidget {
                   ),
                   RaisedButton(
                     onPressed: () {
-                      update_class(kitchenTips.id.toString(), name,
-                          description, context);
+                      update_class(kitchenTips.id.toString(), name, description,
+                          context);
                     },
                     color: Colors.orange,
                     padding: EdgeInsets.symmetric(horizontal: 50),
@@ -164,7 +164,7 @@ class UpdateTips extends StatelessWidget {
           body: jsonEncode({
             "id": tipID,
             "name": name,
-            "descriptio": description,
+            "description": description,
           }),
           headers: {
             "Accept": "application/json",
@@ -189,6 +189,7 @@ class UpdateTips extends StatelessWidget {
   }
 
   void deleteClass(tipID, context) async {
+    print(tipID);
     if (tipID != Null) {
       var response = await http.delete(
           Uri.parse(

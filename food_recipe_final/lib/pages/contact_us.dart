@@ -26,7 +26,7 @@ class ContactUs extends StatelessWidget {
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                    color: primary,
+                    color: white,
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
                         image: NetworkImage(
@@ -64,7 +64,7 @@ class ContactUs extends StatelessWidget {
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                    color: primary,
+                    color: white,
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
                         image: NetworkImage(
@@ -102,7 +102,7 @@ class ContactUs extends StatelessWidget {
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                    color: primary,
+                    color: white,
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
                         image: NetworkImage(

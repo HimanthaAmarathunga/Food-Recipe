@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/model/diat.dart';
+import 'package:food_recipe_final/pages/navBar.dart';
 import 'package:food_recipe_final/pages/recipe_details.dart';
 import 'package:food_recipe_final/pages/update_diet.dart';
 import 'package:food_recipe_final/theme/colors.dart';
@@ -34,7 +35,7 @@ class _DiatListState extends State<DiatList> {
       var items = json.decode(response.body);
       // print(items);
       for (var item in items) {
-        var dietId = item['dietId'];
+        var dietId = item['id'];
         var name = item['name'];
         var age = item['age'];
         var weight = item['weight'];
@@ -59,6 +60,7 @@ class _DiatListState extends State<DiatList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
         title: Text("Listing Diet Plans"),
       ),
